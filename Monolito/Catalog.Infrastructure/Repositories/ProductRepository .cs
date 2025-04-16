@@ -1,4 +1,4 @@
-﻿using Catalog.Domain;
+﻿using Catalog.Domain.Entities;
 using Catalog.Domain.Interfaces;
 using Catalog.Infrastructure.Data;
 using System;

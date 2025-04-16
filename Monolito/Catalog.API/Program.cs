@@ -1,4 +1,4 @@
-using Catalog.Domain;
+using Catalog.Domain.Entities;
 using Catalog.Domain.Interfaces;
 using Catalog.Infrastructure.Data;
 using Catalog.Infrastructure.Repositories;
@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddRazorPages();
 builder.Services.AddDbContext<CatalogDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
