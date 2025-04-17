@@ -30,7 +30,7 @@ namespace Catalog.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task<Product> GetProductByIdAsync(int id) => await _context.Products.FindAsync(id);
+        public async Task<Product> GetByIdAsync(Guid id) => await _context.Products.FindAsync(id);
 
 
         public async Task UpdateAsync(Product product)
