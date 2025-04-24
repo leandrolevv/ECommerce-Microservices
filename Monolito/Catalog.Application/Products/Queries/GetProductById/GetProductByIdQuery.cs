@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Catalog.Domain.Entities;
 using MediatR;
 
-namespace Catalog.Application.Products.Queries;
+namespace Catalog.Application.Products.Queries.GetProductById;
 
 public record GetProductByIdQuery(Guid Id) : IRequest<Product>;
 

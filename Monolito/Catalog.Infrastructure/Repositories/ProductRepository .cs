@@ -1,6 +1,7 @@
 ﻿using Catalog.Domain.Entities;
 using Catalog.Domain.Interfaces;
 using Catalog.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,17 +26,20 @@ namespace Catalog.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync()
+        public async Task DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            _context.Products.Remove(await GetByIdAsync(id) ?? throw new ArgumentNullException(nameof(id)));
+            await _context.SaveChangesAsync();
         }
 
         public async Task<Product> GetByIdAsync(Guid id) => await _context.Products.FindAsync(id);
 
+        public async Task<IList<Product>> GetAllAsync() => await _context.Products.ToListAsync<Product>();
 
         public async Task UpdateAsync(Product product)
         {
-            throw new NotImplementedException();
+            _context.Update(product);
+            await _context.SaveChangesAsync();
         }
     }
 }

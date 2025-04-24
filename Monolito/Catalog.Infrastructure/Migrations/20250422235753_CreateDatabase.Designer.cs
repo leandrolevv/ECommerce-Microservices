@@ -4,6 +4,7 @@ using Catalog.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Catalog.Infrastructure.Migrations
 {
     [DbContext(typeof(CatalogDbContext))]
-    partial class CatalogDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250422235753_CreateDatabase")]
+    partial class CreateDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,20 +45,6 @@ namespace Catalog.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("58a45108-6fb5-410c-92a2-3ca63081be2c"),
-                            CreatedAt = new DateTime(2025, 4, 22, 23, 38, 28, 0, DateTimeKind.Utc),
-                            Name = "Eletrônicos"
-                        },
-                        new
-                        {
-                            Id = new Guid("9a2342ca-61bd-421e-ba39-0d66f999e7f6"),
-                            CreatedAt = new DateTime(2025, 4, 22, 23, 38, 28, 0, DateTimeKind.Utc),
-                            Name = "Livros"
-                        });
                 });
 
             modelBuilder.Entity("Catalog.Domain.Entities.Product", b =>

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Catalog.Infrastructure.Migrations
 {
     [DbContext(typeof(CatalogDbContext))]
-    [Migration("20250417005648_AddCategoryAndRelationship")]
-    partial class AddCategoryAndRelationship
+    [Migration("20250422235853_AddCategories")]
+    partial class AddCategories
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,14 +36,29 @@ namespace Catalog.Infrastructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category");
+                    b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("58a45108-6fb5-410c-92a2-3ca63081be2c"),
+                            CreatedAt = new DateTime(2025, 4, 22, 23, 38, 28, 0, DateTimeKind.Utc),
+                            Name = "Eletrônicos"
+                        },
+                        new
+                        {
+                            Id = new Guid("9a2342ca-61bd-421e-ba39-0d66f999e7f6"),
+                            CreatedAt = new DateTime(2025, 4, 22, 23, 38, 28, 0, DateTimeKind.Utc),
+                            Name = "Livros"
+                        });
                 });
 
             modelBuilder.Entity("Catalog.Domain.Entities.Product", b =>

@@ -10,8 +10,9 @@ namespace Catalog.Domain.Interfaces
     public interface IProductRepository
     {
         Task<Product> GetByIdAsync(Guid id);
+        Task<IList<Product>> GetAllAsync();
         Task AddAsync(Product product);
         Task UpdateAsync(Product product);
-        Task DeleteAsync();
+        Task DeleteAsync(Guid id);
     }
 }
